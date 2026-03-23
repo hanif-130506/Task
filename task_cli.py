@@ -51,6 +51,17 @@ def main():
      	for t in tasks:
      	    if status_filter is None or t['status'] == status_filter:
      	        print(f"[{t['id']}] {t['description']} - Status : {t['status']} ")
-          
+     	        
+     	        
+      elif command == "update":
+          task_id = int(sys.argv[2])
+          new_desc = " ".join(sys.argv[3:])
+          for t in tasks:
+              if t['id'] == task_id:
+                  t['description'] = new_desc
+                  t['updateAt'] = datetime.now().isoformat
+          save_tasks(tasks)
+          print("Task updated.")
+              
         
                                                                                                                     
